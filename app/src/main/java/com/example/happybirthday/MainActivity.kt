@@ -6,8 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +30,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier) {
+    var showIcons by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -58,17 +61,28 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Center
             )
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        Column(
-            modifier = Modifier.padding(bottom = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            ContactInfo(icon = R.drawable.ic_telefone, info = "+55 (11) 12345-6789")
-            Spacer(modifier = Modifier.height(8.dp))
-            ContactInfo(icon = R.drawable.ic_twitter, info = "@eu.mathzxs")
-            Spacer(modifier = Modifier.height(8.dp))
-            ContactInfo(icon = R.drawable.ic_email, info = "Math.foda@zika.com")
+
+        Button(onClick = { showIcons = !showIcons }) {
+            Text(if (showIcons) "Esconder Contatos" else "Mostrar Contatos")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        if (showIcons) {
+            Column(
+                modifier = Modifier.padding(bottom = 32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                ContactInfo(icon = R.drawable.ic_telefone, info = "+55 (11) 12345-6789")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_twitter, info = "@eu.mathzxs")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_email, info = "Math.foda@zika.com")
+            }
+        } else {
+            Spacer(modifier = Modifier.height(32.dp)) //Para manter o layout consistente quando os icons forem escondidos.
+        }
+
     }
 }
 
