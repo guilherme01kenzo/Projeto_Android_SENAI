@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -70,7 +72,9 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
 
         if (showIcons) {
             Column(
-                modifier = Modifier.padding(bottom = 32.dp),
+                modifier = Modifier
+                    .padding(bottom = 32.dp)
+                    .verticalScroll(rememberScrollState()), // Adicionado scroll vertical
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ContactInfo(icon = R.drawable.ic_telefone, info = "+55 (11) 12345-6789")
@@ -78,6 +82,16 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                 ContactInfo(icon = R.drawable.ic_twitter, info = "@eu.mathzxs")
                 Spacer(modifier = Modifier.height(8.dp))
                 ContactInfo(icon = R.drawable.ic_email, info = "Math.foda@zika.com")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_instagram, info = "@insta_fake")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_facebook, info = "@face_fake")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_linkedin, info = "@linked_fake")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_youtube, info = "@youtube_fake")
+                Spacer(modifier = Modifier.height(8.dp))
+                ContactInfo(icon = R.drawable.ic_discord, info = "@discord_fake")
             }
         } else {
             Spacer(modifier = Modifier.height(32.dp)) //Para manter o layout consistente quando os icons forem escondidos.
